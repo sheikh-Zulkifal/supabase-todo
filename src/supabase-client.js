@@ -1,8 +1,11 @@
 import { createClient } from "@supabase/supabase-js";
 
-const supabaseUrl = "YOUR_SUPABASE_URL"; // Replace with your Supabase URL
-const supabaseAnonKey =     "YOUR_SUPABASE_ANON_KEY"; // Replace with your Supabase Anon Key
-// Note: You can find these values in your Supabase project settings under API.
+const supabaseUrl = process.env.SUPABASE_URL ;
+
+const supabaseAnonKey =  process.env.SUPABASE_ANON_KEY ;
+if (!supabaseUrl || !supabaseAnonKey) {
+  throw new Error("Supabase URL and Anon Key must be provided");
+}
 
 
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
